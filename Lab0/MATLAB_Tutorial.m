@@ -106,6 +106,8 @@ inputMatrix = dlmread(better_filename);
 % Documentation challenge 1.
 % Look up the "sound" function. Figure out how to play handel.mat at twice
 % the normal speed.
+
+clear;clc;
 load handel.mat;
 
 % Documentaton challenge 2.
