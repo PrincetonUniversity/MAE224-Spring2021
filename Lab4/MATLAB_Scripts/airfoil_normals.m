@@ -19,10 +19,10 @@ ys=[ys -1.*fliplr(ys)];
 x_a = xs.*cos(aoa) + ys.*sin(aoa);  
 y_a = ys.*cos(aoa) - xs.*sin(aoa);
 % plot airfoil
-figure(1); hold on;
-plot(x_a,y_a,'b-'); 
+figure(1); hold off
+plot(x_a,y_a,'b-');
 daspect([1 1 1]);
-
+hold on;
 %% calculate and plot the pressure tap locations%
 X_top = 0:1/15.5:1; X_bot = (1-1.5/15.5):-1/15.5:0;
 X=c.*[X_top X_bot(1:end-1)];
