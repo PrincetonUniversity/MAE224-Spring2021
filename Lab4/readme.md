@@ -1,2 +1,3 @@
 Lab4 Materials
-Under construction ...
+
+Read [wiki](https://github.com/PrincetonUniversity/MAE224-Spring2021/wiki/Lab-4---Lift-and-Drag)
