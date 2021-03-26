@@ -1,11 +1,11 @@
-function [ xn, yn, u, v ] = airfoil_normals( aoa )
+function [ xn, yn, u, v ] = airfoil_normals(aoa,plotflag)
 %Code for outputting NACA 0018 Surface Normals
 %   aoa = current angle of attack (degrees)
 % OUTPUTS: xn,yn pointer vectors from leading edge of airfoil
 % u,v are the x and y components of the surface normals
 aoa = deg2rad(aoa); %convert to radians
 % Chord (m) %
-c = 0.3 ;
+c = 0.305;
 %eqn to enerate NACA 0018 Points%
 naca = @(x,t,c) 5.*t./100.*c.*( 0.2969.*sqrt(x./c) ...
                 -0.1260.*(x./c) - 0.3516.*(x./c).^2 ...
@@ -19,10 +19,14 @@ ys=[ys -1.*fliplr(ys)];
 x_a = xs.*cos(aoa) + ys.*sin(aoa);  
 y_a = ys.*cos(aoa) - xs.*sin(aoa);
 % plot airfoil
-figure(1); hold off
-plot(x_a,y_a,'b-');
-daspect([1 1 1]);
-hold on;
+
+if (plotflag~=0)
+    figure(1); hold off
+    plot(x_a,y_a,'b-');
+    daspect([1 1 1]);
+    hold on;
+end
+
 %% calculate and plot the pressure tap locations%
 X_top = 0:1/15.5:1; X_bot = (1-1.5/15.5):-1/15.5:0;
 X=c.*[X_top X_bot(1:end-1)];
@@ -32,10 +36,14 @@ Y = [ Y(1:16) -1.*Y(17:end)];
 xn = X.*cos(aoa) + Y.*sin(aoa);
 yn = Y.*cos(aoa) - X.*sin(aoa);
 % plot pressure taps 
-plot(xn,yn,'bo')
+if (plotflag~=0)
+    plot(xn,yn,'bo')
     text(xn(1),yn(1),'Tap 1 (top)')
     text(xn(end),yn(end),'Tap 30 (bottom)')
-    
+end
+
+% zn = zeros(length(xn));
+% plot(xn,zn,'ro');
 
 %% Find x and y surface normals%
 xL = circshift(xn,[0,1]); xR = circshift(xn,[0,-1]); %Generate x and y area
@@ -58,6 +66,7 @@ u = dy ./ m ;
 v = dx ./ m ;
 
 %Plot surface Normals%
-quiver(xn,yn,u,v,'b');
-
+if (plotflag~=0)
+    quiver(xn,yn,u,v,'b');
+end
 end
