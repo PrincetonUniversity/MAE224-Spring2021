@@ -6,3 +6,5 @@ The file `demo_11blades_expdata.csv` contains the experimental data obtained wit
 - `frequency` gives the measured frequency of the turbine rotation, in revolutions/second
 - `voltage` gives the measured voltage difference across the generator, in volts
 - `resistance` gives the resistance of the generator (as set by the knob position), in ohms
+
+The radius of the blade is 8 cm, and the typical chord length is 2 cm.
